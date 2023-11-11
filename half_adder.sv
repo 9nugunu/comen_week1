@@ -27,7 +27,7 @@ module half_adder(a, b, sum, carry);
     and g2(carry, a, b);
 endmodule
 
-module full_adder(a, b, cin, sum, cout);
+module full_adder_old(a, b, cin, sum, cout);
 
     input a, b, cin;
     output sum, cout;
@@ -38,4 +38,15 @@ module full_adder(a, b, cin, sum, cout);
     and g3(c2, cin, s1);
     xor g4(sum, s1, cin);
     xor g5(cout,c1, c2);
+endmodule
+
+module full_adder(
+    input a,
+    input b,
+    inout cin,
+    output sum,
+    output cout
+);
+    assign sum = a ^ b ^ cin;
+    assign cout = (a & b) | (b & cin) | (cin & a);
 endmodule
