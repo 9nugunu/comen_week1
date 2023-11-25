@@ -1,4 +1,4 @@
-`timescale 1ns / 1p
+`timescale 1ns / 1ps
 
 /* 23. 11. 26
 기본적인 교차로 신호체계 구현
@@ -7,27 +7,34 @@ Sequential logic(FF)으로 구현하여 clk에따라 State 변경을 할 수 있
 
 */
 
-module traffic_light();
+module traffic_light(
+    input clk,
+    input rst_n,
+    output reg north,
+    output reg south,
+    output reg east,
+    output reg west
+);
 
-	localparam S_RST = 2'b000;
-	localparam S1 = 2'b0001;
-	localparam S2 = 2'b0010;
-	localparam S3 = 2'b0011;
-	localparam S4 = 2'b0100;
-	localparam S5 = 2'b0101;
-	localparam S6 = 2'b0110;
-	localparam S7 = 2'b0111;
-	localparam S8 = 2'b1000;
+	localparam S_RST = 4'b0000;
+	localparam S1 = 4'b0001;
+	localparam S2 = 4'b0010;
+	localparam S3 = 4'b0011;
+	localparam S4 = 4'b0100;
+	localparam S5 = 4'b0101;
+	localparam S6 = 4'b0110;
+	localparam S7 = 4'b0111;
+	localparam S8 = 4'b1000;
 
 	reg rst_n;
 	reg clk;
-	reg [1:0] state, next_state;
+	reg [3:0] state, next_state;
 
 	reg NS_g, NS_y, NS_r, NS_lt;
 	reg SN_g, SN_y, SN_r, SN_lt;
 
 	reg EW_g, EW_y, EW_r, EW_lt;
-	reg walk_g, walk_r;
+	reg WE_g, WE_y, WE_r, WE_lt;
 
 	reg [7:0] timer;
 
@@ -36,7 +43,7 @@ module traffic_light();
 
 		state = S_RST;
 
-		timer = 0
+		timer = 0;
 
 		NS_g = 1;
 		NS_y = 1;
@@ -73,9 +80,11 @@ module traffic_light();
 
 	always @ (posedge clk or negedge rst_n) begin
 		if (~rst_n) state <= S_RST;
-		else		state <= next_state;
+		else      state <= next_state;
+	end
 		
-		case(state) 
+	always @ (*) begin
+		case(next_state) 
 			S_RST: next_state = S1;
 			S1: begin
 				if (timer  == 40)    
@@ -127,35 +136,24 @@ module traffic_light();
 		endcase
 	end
 
-	always @ (*) begin
-		case(state)
-			S_RST: next_state = S1;
-			S1: next_state = S2;
-			S2: next_state = S3;
-			S3: next_state = S4;
-			S4: next_state = S5;
-			S5: next_state = S6;
-			S6: next_state = S7;
-			S7: next_state = S8;
-		endcase
-	end
+	always @ (posedge clk or negedge rst_n) begin
 
 		if (~rst_n) begin
-			NS_g = 1;
-			NS_y = 1;
-			NS_r = 1;
-			NS_lt = 1;
-
-			SN_g = 1;
-			SN_y = 1;
-			SN_r = 1;
-			SN_lt = 1;
-
-			EW_g = 1;
-			EW_y = 1;
-			EW_r = 1;
-			EW_lt = 1;
-
+            NS_g = 1;
+            NS_y = 1;
+            NS_r = 1;
+            NS_lt = 1;
+            
+            SN_g = 1;
+            SN_y = 1;
+            SN_r = 1;
+            SN_lt = 1;
+            
+            EW_g = 1;
+            EW_y = 1;
+            EW_r = 1;
+            EW_lt = 1;
+            
 			WE_g = 1;
 			WE_y = 1;
 			WE_r = 1;
@@ -402,6 +400,7 @@ module traffic_light();
                   timer <= 0;
             end
          endcase
+		end
 	end
 	
 endmodule

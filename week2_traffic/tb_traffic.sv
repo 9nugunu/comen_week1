@@ -1,60 +1,42 @@
-/* 신호등 데이터타입 */
-typedef enum logic [1:0] {
-	GREEN,
-	YELLOW,
-	RED,
-	LEFT
-} traffic_light;
-
-
-/* DUT - 신호등 FSM */
-module light_fsm (
-	input clk, rst_n,
-	output traffic_light north, // 북쪽 신호등 
-	output traffic_light south, // 남쪽 신호등
-	output traffic_light east,  // 동쪽 신호등
-	output traffic_light west,  // 서쪽 신호등
-);
-
-	/* Todo */
-
-endmodule
-
-
-
-/* Testbench */
 module testbench();
 
-	logic clk;
-	logic rst_n;
+    logic clk;
+    logic rst_n;
 
-	traffic_light north, south, east, west; 
+    traffic_light north, south, east, west; 
 
-	light_fsm dut(
-		 .clk(clk)
-		,.rst_n(rst_n)
-		,.north(north)
-		,.south(south)
-		,.east(east)
-		,.west(west)
-	);
 
-	/* Todo */
+	reg NS_g, NS_y, NS_r, NS_lt;
+	reg SN_g, SN_y, SN_r, SN_lt;
 
-	initial begin
-		clk = 0;
-		rst_n = 1;
+	reg EW_g, EW_y, EW_r, EW_lt;
+	reg WE_g, WE_y, WE_r, WE_lt;
 
-		#20
-		rst_n = 0;
+    traffic_light dut(
+        .clk(clk),
+        .rst_n(rst_n),
+		.north(north),
+		.south(south),
+		.east(east),
+		.west(west)
+    );
 
-		#20
-		rst_n = 1;
-	end
+    initial begin
+        clk = 0;
+        rst_n = 1; // 먼저 리셋을 비활성화 상태로 설정
 
-	always begin
-		#5
-		clk = ~clk;
-	end
-	
+        #20
+        rst_n = 0; // 리셋 활성화
+
+        #20
+        rst_n = 1; // 리셋 해제
+    end
+
+    always #5 clk = ~clk; // 5ns 마다 클록 토글
+
+    // // 출력 모니터링
+    // always @ (posedge clk) begin
+    //     $display("Time: %t, North: %0d, South: %0d, East: %0d, West: %0d", $time, north, south, east, west);
+    // end
+    
 endmodule
