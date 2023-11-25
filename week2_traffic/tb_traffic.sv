@@ -41,5 +41,20 @@ module testbench();
 
 	/* Todo */
 
+	initial begin
+		clk = 0;
+		rst_n = 1;
+
+		#20
+		rst_n = 0;
+
+		#20
+		rst_n = 1;
+	end
+
+	always begin
+		#5
+		clk = ~clk;
+	end
 	
 endmodule

@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1p
 
 /* 23. 11. 26
 기본적인 교차로 신호체계 구현
@@ -7,7 +7,7 @@ Sequential logic(FF)으로 구현하여 clk에따라 State 변경을 할 수 있
 
 */
 
-module traffic_light():
+module traffic_light();
 
 	localparam S_RST = 2'b000;
 	localparam S1 = 2'b0001;
@@ -23,7 +23,10 @@ module traffic_light():
 	reg clk;
 	reg [1:0] state, next_state;
 
-	reg car_g, car_r, car_y;
+	reg NS_g, NS_y, NS_r, NS_lt;
+	reg SN_g, SN_y, SN_r, SN_lt;
+
+	reg EW_g, EW_y, EW_r, EW_lt;
 	reg walk_g, walk_r;
 
 	reg [7:0] timer;
