@@ -5,8 +5,6 @@
 마지막 단 구현 식 Combinatiorial logic 으로 구현 하면 clk 고려를 하지 못함.
 Sequential logic(FF)으로 구현하여 clk에따라 State 변경을 할 수 있게끔 구현해야함.
 
-추가할 수 있는 사항
- - 횡단보도 추가로 나눠서 동서차로 좌회전 시 남북/동서 각각 횡단보도 한 방향씩 킬 수 있음.
 */
 
 module traffic_light():
@@ -41,15 +39,22 @@ module traffic_light():
 		NS_y = 1;
 		NS_r = 1;
 		NS_lt = 1;
-		NS_walk_g = 0;
-		NS_walk_r = 1;
+
+		SN_g = 1;
+		SN_y = 1;
+		SN_r = 1;
+		SN_lt = 1;
 
 		EW_g = 1;
 		EW_y = 1;
 		EW_r = 1;
 		EW_lt = 1;
-		EW_walk_g = 0;
-		EW_walk_r = 1;
+		
+		WE_g = 1;
+		WE_y = 1;
+		WE_r = 1;
+		WE_lt = 1;
+
 
 		rst_n = 1;
 		#30
@@ -137,15 +142,21 @@ module traffic_light():
 			NS_y = 1;
 			NS_r = 1;
 			NS_lt = 1;
-			NS_walk_g = 1;
-			NS_walk_r = 1;
+
+			SN_g = 1;
+			SN_y = 1;
+			SN_r = 1;
+			SN_lt = 1;
 
 			EW_g = 1;
 			EW_y = 1;
 			EW_r = 1;
 			EW_lt = 1;
-			EW_walk_g = 1;
-			EW_walk_r = 1;
+
+			WE_g = 1;
+			WE_y = 1;
+			WE_r = 1;
+			WE_lt = 1;
 		end 
 
        else begin
@@ -155,35 +166,47 @@ module traffic_light():
 				NS_y = 0;
 				NS_r = 0;
 				NS_lt = 0;
-				NS_walk_g = 1;
-				NS_walk_r = 0;
 
-				EW_g = 0;
-				EW_y = 0;
-				EW_r = 0;
-				EW_lt = 0;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
-            end 
-
-            S1: begin
 				NS_g = 1;
 				NS_y = 0;
 				NS_r = 0;
 				NS_lt = 0;
-				NS_walk_g = 1;
-				NS_walk_r = 0;
+
+				EW_g = 1;
+				EW_y = 0;
+				EW_r = 1;
+				EW_lt = 0;
+
+				WE_g = 1;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 0;
+            end 
+
+            S1: begin
+				NS_g = 0;
+				NS_y = 1;
+				NS_r = 0;
+				NS_lt = 0;
+
+				NS_g = 0;
+				NS_y = 1;
+				NS_r = 0;
+				NS_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
-				EW_r = 0;
+				EW_r = 1;
 				EW_lt = 0;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 0;
 
                if (timer < 40)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end 
 
@@ -192,40 +215,52 @@ module traffic_light():
 				NS_y = 1;
 				NS_r = 0;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
+
+				NS_g = 0;
+				NS_y = 1;
+				NS_r = 0;
+				NS_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
-				EW_r = 0;
+				EW_r = 1;
 				EW_lt = 0;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 0;
 
                if (timer < 5)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end 
 
             S3: begin
 				NS_g = 0;
 				NS_y = 0;
-				NS_r = 0;
+				NS_r = 1;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
+
+				NS_g = 0;
+				NS_y = 0;
+				NS_r = 1;
+				NS_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
-				EW_r = 0;
+				EW_r = 1;
 				EW_lt = 1;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 1;
 
                if (timer < 20)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
 			
@@ -234,82 +269,106 @@ module traffic_light():
 				NS_y = 0;
 				NS_r = 0;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
+
+				NS_g = 0;
+				NS_y = 0;
+				NS_r = 0;
+				NS_lt = 0;
 
 				EW_g = 0;
 				EW_y = 1;
 				EW_r = 0;
 				EW_lt = 0;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 1;
+				WE_r = 0;
+				WE_lt = 0;
 
                if (timer < 5)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
 
             S5: begin
 				NS_g = 0;
 				NS_y = 0;
-				NS_r = 0;
+				NS_r = 1;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 0;
+
+				NS_g = 0;
+				NS_y = 0;
+				NS_r = 1;
+				NS_lt = 0;
 
 				EW_g = 1;
 				EW_y = 0;
 				EW_r = 0;
 				EW_lt = 0;
-				EW_walk_g = 1;
-				EW_walk_r = 0;
+
+				WE_g = 1;
+				WE_y = 0;
+				WE_r = 0;
+				WE_lt = 0;
 
                if (timer < 40)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
 
             S6: begin
 				NS_g = 0;
 				NS_y = 0;
-				NS_r = 0;
+				NS_r = 1;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
 
-				EW_g = 1;
-				EW_y = 0;
+				NS_g = 0;
+				NS_y = 0;
+				NS_r = 1;
+				NS_lt = 0;
+
+				EW_g = 0;
+				EW_y = 1;
 				EW_r = 0;
-				EW_lt = 1;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+				EW_lt = 0;
+
+				WE_g = 0;
+				WE_y = 1;
+				WE_r = 0;
+				WE_lt = 0;
 
                if (timer < 5)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
 
             S7: begin
 				NS_g = 0;
 				NS_y = 0;
-				NS_r = 0;
+				NS_r = 1;
 				NS_lt = 1;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
+
+				NS_g = 0;
+				NS_y = 0;
+				NS_r = 1;
+				NS_lt = 1;
 
 				EW_g = 0;
 				EW_y = 0;
-				EW_r = 0;
+				EW_r = 1;
 				EW_lt = 0;
-				EW_walk_g = 0;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 0;
 
                if (timer < 20)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
 
@@ -318,19 +377,25 @@ module traffic_light():
 				NS_y = 1;
 				NS_r = 0;
 				NS_lt = 0;
-				NS_walk_g = 0;
-				NS_walk_r = 1;
+
+				NS_g = 0;
+				NS_y = 1;
+				NS_r = 0;
+				NS_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
-				EW_r = 0;
+				EW_r = 1;
 				EW_lt = 0;
-				EW_walk_g = 1;
-				EW_walk_r = 1;
+
+				WE_g = 0;
+				WE_y = 0;
+				WE_r = 1;
+				WE_lt = 0;
 
                if (timer < 5)
-                  timer <= timer +1;
-               else
+                 timer <= timer +1;
+              else
                   timer <= 0;
             end
          endcase
