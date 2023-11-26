@@ -38,25 +38,25 @@ module traffic_light();
 
 		timer = 0;
 
-		NS_g = 1;
-		NS_y = 1;
+		NS_g = 0;
+		NS_y = 0;
 		NS_r = 1;
-		NS_lt = 1;
-
-		SN_g = 1;
-		SN_y = 1;
-		SN_r = 1;
-		SN_lt = 1;
-
-		EW_g = 1;
-		EW_y = 1;
-		EW_r = 1;
-		EW_lt = 1;
+		NS_lt = 0;
 		
-		WE_g = 1;
-		WE_y = 1;
+		SN_g = 0;
+		SN_y = 0;
+		SN_r = 1;
+		SN_lt = 0;
+		
+		EW_g = 0;
+		EW_y = 0;
+		EW_r = 1;
+		EW_lt = 0;
+		
+		WE_g = 0;
+		WE_y = 0;
 		WE_r = 1;
-		WE_lt = 1;
+		WE_lt = 0;
 
 
 		rst_n = 1;
@@ -81,49 +81,49 @@ module traffic_light();
 			S_RST: next_state = S1;
 			S1: begin
 				if (timer  == 40)    
-				next_state = S2;
+					next_state = S2;
 				else
-				next_state = state;
+					next_state = state;
 			end
 			S2: begin 
 				if (timer  == 5)    
-				next_state = S3;
+					next_state = S3;
 				else
-				next_state = state;
+					next_state = state;
 			end
 			S3: begin
 				if (timer  == 20)    
-				next_state = S4;
+					next_state = S4;
 				else
-				next_state = state;
+					next_state = state;
 			end
 
 			S4: begin
 				if (timer  == 5)    
-				next_state = S5;
+					next_state = S5;
 				else
-				next_state = state;
+					next_state = state;
 			end		 	
 
 			S5: begin
 				if (timer  == 40)    
-				next_state = S6;
+					next_state = S6;
 				else
-				next_state = state;
+					next_state = state;
 			end
 
 			S6: begin
 				if (timer  == 5)    
-				next_state = S7;
+					next_state = S7;
 				else
-				next_state = state;
+					next_state = state;
 			end
 
 			S8: begin
 				if (timer  == 5)    
-				next_state = S1;
+					next_state = S1;
 				else
-				next_state = state;
+					next_state = state;
 			end
 			
 		endcase
@@ -132,25 +132,25 @@ module traffic_light();
 	always @ (posedge clk or negedge rst_n) begin
 
 		if (~rst_n) begin
-            NS_g = 1;
-            NS_y = 1;
+            NS_g = 0;
+            NS_y = 0;
             NS_r = 1;
-            NS_lt = 1;
+            NS_lt = 0;
             
-            SN_g = 1;
-            SN_y = 1;
+            SN_g = 0;
+            SN_y = 0;
             SN_r = 1;
-            SN_lt = 1;
+            SN_lt = 0;
             
-            EW_g = 1;
-            EW_y = 1;
+            EW_g = 0;
+            EW_y = 0;
             EW_r = 1;
-            EW_lt = 1;
+            EW_lt = 0;
             
-			WE_g = 1;
-			WE_y = 1;
+			WE_g = 0;
+			WE_y = 0;
 			WE_r = 1;
-			WE_lt = 1;
+			WE_lt = 0;
 		end 
 
        else begin
@@ -161,10 +161,10 @@ module traffic_light();
 				NS_r = 0;
 				NS_lt = 0;
 
-				NS_g = 1;
-				NS_y = 0;
-				NS_r = 0;
-				NS_lt = 0;
+				SN_g = 1;
+				SN_y = 0;
+				SN_r = 0;
+				SN_lt = 0;
 
 				EW_g = 1;
 				EW_y = 0;
@@ -178,15 +178,15 @@ module traffic_light();
             end 
 
             S1: begin
-				NS_g = 0;
-				NS_y = 1;
+				NS_g = 1;
+				NS_y = 0;
 				NS_r = 0;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 1;
-				NS_r = 0;
-				NS_lt = 0;
+				SN_g = 1;
+				SN_y = 0;
+				SN_r = 0;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
@@ -210,10 +210,10 @@ module traffic_light();
 				NS_r = 0;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 1;
-				NS_r = 0;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 1;
+				SN_r = 0;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
@@ -237,10 +237,10 @@ module traffic_light();
 				NS_r = 1;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 0;
-				NS_r = 1;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 0;
+				SN_r = 1;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;
@@ -264,10 +264,10 @@ module traffic_light();
 				NS_r = 0;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 0;
-				NS_r = 0;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 0;
+				SN_r = 0;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 1;
@@ -291,10 +291,10 @@ module traffic_light();
 				NS_r = 1;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 0;
-				NS_r = 1;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 0;
+				SN_r = 1;
+				SN_lt = 0;
 
 				EW_g = 1;
 				EW_y = 0;
@@ -318,10 +318,10 @@ module traffic_light();
 				NS_r = 1;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 0;
-				NS_r = 1;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 0;
+				SN_r = 1;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 1;
@@ -345,10 +345,10 @@ module traffic_light();
 				NS_r = 1;
 				NS_lt = 1;
 
-				NS_g = 0;
-				NS_y = 0;
-				NS_r = 1;
-				NS_lt = 1;
+				SN_g = 0;
+				SN_y = 0;
+				SN_r = 1;
+				SN_lt = 1;
 
 				EW_g = 0;
 				EW_y = 0;
@@ -372,10 +372,10 @@ module traffic_light();
 				NS_r = 0;
 				NS_lt = 0;
 
-				NS_g = 0;
-				NS_y = 1;
-				NS_r = 0;
-				NS_lt = 0;
+				SN_g = 0;
+				SN_y = 1;
+				SN_r = 0;
+				SN_lt = 0;
 
 				EW_g = 0;
 				EW_y = 0;

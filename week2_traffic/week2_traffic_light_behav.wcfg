@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="traffic_light_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="traffic_light" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,012.001 ns"></ZoomEndTime>
+      <Cursor1Time time="170.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="148"></NameColumnWidth>
+      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="30" />
+   <wvobject type="logic" fp_name="/traffic_light/rst_n">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/state">
+      <obj_property name="ElementShortName">state[7:0]</obj_property>
+      <obj_property name="ObjectShortName">state[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/next_state">
+      <obj_property name="ElementShortName">next_state[7:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/NS_g">
+      <obj_property name="ElementShortName">NS_g</obj_property>
+      <obj_property name="ObjectShortName">NS_g</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/NS_y">
+      <obj_property name="ElementShortName">NS_y</obj_property>
+      <obj_property name="ObjectShortName">NS_y</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/NS_r">
+      <obj_property name="ElementShortName">NS_r</obj_property>
+      <obj_property name="ObjectShortName">NS_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/NS_lt">
+      <obj_property name="ElementShortName">NS_lt</obj_property>
+      <obj_property name="ObjectShortName">NS_lt</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/SN_g">
+      <obj_property name="ElementShortName">SN_g</obj_property>
+      <obj_property name="ObjectShortName">SN_g</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/SN_y">
+      <obj_property name="ElementShortName">SN_y</obj_property>
+      <obj_property name="ObjectShortName">SN_y</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/SN_r">
+      <obj_property name="ElementShortName">SN_r</obj_property>
+      <obj_property name="ObjectShortName">SN_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/SN_lt">
+      <obj_property name="ElementShortName">SN_lt</obj_property>
+      <obj_property name="ObjectShortName">SN_lt</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/EW_g">
+      <obj_property name="ElementShortName">EW_g</obj_property>
+      <obj_property name="ObjectShortName">EW_g</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/EW_y">
+      <obj_property name="ElementShortName">EW_y</obj_property>
+      <obj_property name="ObjectShortName">EW_y</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/EW_r">
+      <obj_property name="ElementShortName">EW_r</obj_property>
+      <obj_property name="ObjectShortName">EW_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/EW_lt">
+      <obj_property name="ElementShortName">EW_lt</obj_property>
+      <obj_property name="ObjectShortName">EW_lt</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/WE_g">
+      <obj_property name="ElementShortName">WE_g</obj_property>
+      <obj_property name="ObjectShortName">WE_g</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/WE_y">
+      <obj_property name="ElementShortName">WE_y</obj_property>
+      <obj_property name="ObjectShortName">WE_y</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/WE_r">
+      <obj_property name="ElementShortName">WE_r</obj_property>
+      <obj_property name="ObjectShortName">WE_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/traffic_light/WE_lt">
+      <obj_property name="ElementShortName">WE_lt</obj_property>
+      <obj_property name="ObjectShortName">WE_lt</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/timer">
+      <obj_property name="ElementShortName">timer[7:0]</obj_property>
+      <obj_property name="ObjectShortName">timer[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S_RST">
+      <obj_property name="ElementShortName">S_RST[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S_RST[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S1">
+      <obj_property name="ElementShortName">S1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S1[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S2">
+      <obj_property name="ElementShortName">S2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S2[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S3">
+      <obj_property name="ElementShortName">S3[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S3[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S4">
+      <obj_property name="ElementShortName">S4[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S4[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S5">
+      <obj_property name="ElementShortName">S5[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S5[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S6">
+      <obj_property name="ElementShortName">S6[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S6[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S7">
+      <obj_property name="ElementShortName">S7[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S7[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/traffic_light/S8">
+      <obj_property name="ElementShortName">S8[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S8[3:0]</obj_property>
+   </wvobject>
+</wave_config>
