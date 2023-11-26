@@ -113,8 +113,15 @@ module traffic_light();
 			end
 
 			S6: begin
-				if (timer  == 5)    
+				if (timer  == 20)    
 					next_state = S7;
+				else
+					next_state = state;
+			end
+
+			S7: begin
+				if (timer  == 5)    
+					next_state = S8;
 				else
 					next_state = state;
 			end
