@@ -7,14 +7,7 @@ Sequential logic(FF)으로 구현하여 clk에따라 State 변경을 할 수 있
 
 */
 
-module traffic_light(
-    input clk,
-    input rst_n,
-    output reg north,
-    output reg south,
-    output reg east,
-    output reg west
-);
+module traffic_light();
 
 	localparam S_RST = 4'b0000;
 	localparam S1 = 4'b0001;
@@ -28,7 +21,7 @@ module traffic_light(
 
 	reg rst_n;
 	reg clk;
-	reg [3:0] state, next_state;
+	reg [7:0] state, next_state;
 
 	reg NS_g, NS_y, NS_r, NS_lt;
 	reg SN_g, SN_y, SN_r, SN_lt;
@@ -84,7 +77,7 @@ module traffic_light(
 	end
 		
 	always @ (*) begin
-		case(next_state) 
+		case(state) 
 			S_RST: next_state = S1;
 			S1: begin
 				if (timer  == 40)    
